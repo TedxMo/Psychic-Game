@@ -6,6 +6,7 @@
 						    ,'p','q','r','s','t'
 						    ,'u','v','w','x','y','z'];
 	var countLeft, userWin, userLose, usedLetter;
+  var totalLetter ='';
 	var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 	console.log(computerGuess);
     // This function is run whenever the user presses a key.
@@ -25,25 +26,28 @@
       // computerGuess = document.getElementById("guess");
       
 		
-      
-      if(computerChoices.indexOf(userGuess)!= -1){
-      	countLeft.textContent = parseInt(countLeft.textContent) - 1 ;
-      	usedLetter.textContent = usedLetter.textContent + userGuess;
-      	if(userGuess === computerGuess){
-      		countLeft.textContent = 10;
-      		usedLetter.textContent = '';
-      		userWin.textContent = parseInt(userWin.textContent) +1;
-      		computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-      		console.log(computerGuess);
-      	}
-      	if(countLeft.textContent==0){
-      		countLeft.textContent = 10;
-      		usedLetter.textContent = '';
-      		userLose.textContent = parseInt(userLose.textContent) +1;
-      		computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-      		console.log(computerGuess);
-      	}
+      if(totalLetter.indexOf(userGuess)==-1){
+        if(computerChoices.indexOf(userGuess)!= -1){
+        	countLeft.textContent = parseInt(countLeft.textContent) - 1 ;
+        	usedLetter.textContent = usedLetter.textContent + userGuess;
+          totalLetter =  totalLetter+ userGuess;
+        	if(userGuess === computerGuess){
+            totalLetter = '';
+        		countLeft.textContent = 10;
+        		usedLetter.textContent = '';
+        		userWin.textContent = parseInt(userWin.textContent) +1;
+        		computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+        		console.log(computerGuess);
+        	}
+        	if(countLeft.textContent==0){
+            totalLetter = '';
+        		countLeft.textContent = 10;
+        		usedLetter.textContent = '';
+        		userLose.textContent = parseInt(userLose.textContent) +1;
+        		computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+        		console.log(computerGuess);
+        	}
+        }
       }
-
     }
 // }
